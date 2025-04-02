@@ -1,0 +1,7 @@
+name: CerialPluginTemplate
+version: '1.0-SNAPSHOT'
+main: cc.cerial.cerialplugintemplate.CerialPluginTemplate
+bootstrapper: cc.cerial.cerialplugintemplate.load.CerialPluginBootstrap
+api-version: '1.21'
+authors:
+  - Cerial
