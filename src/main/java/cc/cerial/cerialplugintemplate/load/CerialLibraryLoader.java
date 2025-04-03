@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("UnstableApiUsage")
+@SuppressWarnings({"UnstableApiUsage", "unused"})
 public class CerialLibraryLoader implements PluginLoader {
     private static final Map<String, String> repos = new HashMap<>();
     private static final List<String> deps = new ArrayList<>();
 
     static {
         repos.put("maven-central", "https://repo.maven.apache.org/maven2/");
-
+        deps.add("io.github.classgraph:classgraph:4.8.179");
     }
 
     @Override
