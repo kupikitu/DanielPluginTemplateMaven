@@ -1,7 +1,8 @@
 package cc.cerial.cerialplugintemplate.load;
 
-import cc.cerial.cerialplugintemplate.commands.PluginCommand;
+import cc.cerial.cerialplugintemplate.interfaces.PluginCommand;
 import cc.cerial.cerialplugintemplate.commands.debugutils.DebugUtilsRootCommand;
+import cc.cerial.cerialplugintemplate.interfaces.RootCommand;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
@@ -29,11 +30,6 @@ public class CerialPluginBootstrap implements PluginBootstrap {
         });
     }
 
-    private String removeLastPart(String packageString) {
-        int dot = packageString.lastIndexOf('.');
-        if (dot != -1) return packageString.substring(0, dot); else return packageString;
-    }
-
     /**
      * Registers subcommands under the package with a root command.
      * @param ctx The bootstrap context.
@@ -52,10 +48,10 @@ public class CerialPluginBootstrap implements PluginBootstrap {
                 .addClassLoader(this.getClass().getClassLoader())
                 .acceptPackages(pkg)
                 .scan()) {
-            for (ClassInfo info: scanResult.getClassesImplementing(removeLastPart(pkg)+".PluginCommand")) {
+            for (ClassInfo info: scanResult.getClassesImplementing("cc.cerial.cerialplugintemplate.interfaces.PluginCommand")) {
                 try {
                     PluginCommand command = (PluginCommand) info.loadClass().getConstructor().newInstance();
-                    if (root.build().equals(command.getCommand())) continue;
+                    if (command.getClass().getAnnotation(RootCommand.class) != null) continue;
                     root.then(command.getCommand());
                     ctx.getLogger().info("Registered command /{} {} from class {}.", root.getLiteral(),
                             command.getCommand().getLiteral(), info.getSimpleName());
@@ -84,7 +80,7 @@ public class CerialPluginBootstrap implements PluginBootstrap {
                 .addClassLoader(this.getClass().getClassLoader())
                 .acceptPackages(pkg)
                 .scan()) {
-            for (ClassInfo info: scanResult.getClassesImplementing(removeLastPart(pkg)+".PluginCommand")) {
+            for (ClassInfo info: scanResult.getClassesImplementing("cc.cerial.cerialplugintemplate.interfaces.PluginCommand")) {
                 try {
                     PluginCommand command = (PluginCommand) info.loadClass().getConstructor().newInstance();
                     event.registrar().register(command.getCommand());

@@ -2,7 +2,7 @@ package cc.cerial.cerialplugintemplate.commands.debugutils;
 
 import cc.cerial.cerialplugintemplate.CerialPluginTemplate;
 import cc.cerial.cerialplugintemplate.PluginUtils;
-import cc.cerial.cerialplugintemplate.commands.PluginCommand;
+import cc.cerial.cerialplugintemplate.interfaces.PluginCommand;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
