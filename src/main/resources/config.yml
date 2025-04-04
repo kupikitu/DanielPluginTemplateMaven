@@ -1,0 +1,7 @@
+# config.yml file
+# Change it to your liking.
+test: value
+hey: 17
+no: true
+yes: false
+black: "white"

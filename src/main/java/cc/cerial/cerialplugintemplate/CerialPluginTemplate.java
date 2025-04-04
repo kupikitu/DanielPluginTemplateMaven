@@ -1,13 +1,18 @@
 package cc.cerial.cerialplugintemplate;
 
-import cc.cerial.cerialplugintemplate.load.CerialPlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public final class CerialPluginTemplate extends CerialPlugin {
+public final class CerialPluginTemplate extends JavaPlugin {
+    private static final PluginUtils utils = new PluginUtils("");
     private static CerialPluginTemplate instance;
-    private static PluginUtils utils;
+    private static PluginConfig config;
 
     public static PluginUtils getUtils() {
         return utils;
+    }
+
+    public static PluginConfig getPluginConfig() {
+        return config;
     }
 
     public static CerialPluginTemplate get() {
@@ -16,14 +21,18 @@ public final class CerialPluginTemplate extends CerialPlugin {
         return instance;
     }
 
-    @Override
-    public void onReload() {
+    public boolean onReload() {
+        config = new PluginConfig();
+        if (!config.loadConfig()) return false;
+        return true;
     }
+
+
 
     @Override
     public void onEnable() {
         instance = this;
-        super.onEnable();
+        if (!onReload()) return;
     }
 
     @Override

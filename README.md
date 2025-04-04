@@ -34,3 +34,8 @@ the command sender.
 ## Remote Debugging & Hot reloading
 To enable debugging on your server, please follow the guide from PaperMC: https://docs.papermc.io/paper/dev/debugging#using-a-remote-debugger<br>
 Any JDK will work, but if possible, use JetBrains Runtime JDK, as it has much more debugging capability.
+## Configuration
+This template uses the [Configurate](https://github.com/SpongePowered/Configurate) library for configuration.<br>
+First, make the configuration you want in the config.yml, then to access the configuration, use
+`CerialPluginTemplate.getPluginConfig()` and then either access to YamlConfigurationLoader by using `#getLoader()` or access
+the CommentedConfigurationNode by using `#getNode()`.
