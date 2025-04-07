@@ -1,11 +1,17 @@
 package cc.cerial.cerialplugintemplate;
 
+import com.mojang.brigadier.Message;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+
 import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.command.brigadier.MessageComponentSerializer;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.command.CommandSender;
-
 import java.util.function.Predicate;
 
 /**
@@ -13,6 +19,8 @@ import java.util.function.Predicate;
  */
 public class PluginUtils {
     private final String prefix;
+    private static final MiniMessage minimessage = MiniMessage.miniMessage();
+    private static final MessageComponentSerializer messageSerializer = MessageComponentSerializer.message();
 
     /**
      * Constructs a new PluginUtils class.
@@ -32,6 +40,11 @@ public class PluginUtils {
     public TagResolver.Single getPrefixPlaceholder() {
         return Placeholder.parsed("prefix", getPrefixRaw());
     }
+    
+    public Component minimsg(String msg, TagResolver... resolvers){
+        resolvers[resolvers.length] = getPrefixPlaceholder();
+        return minimessage.deserialize(msg, resolvers);
+    }
 
     /**
      * Gives a predicate for a permission check, which checks if the executor has the required permission
@@ -50,5 +63,10 @@ public class PluginUtils {
     public CommandSender getExecutorOrSender(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack stack = ctx.getSource();
         return stack.getExecutor() != null ? stack.getExecutor() : stack.getSender();
+    }
+
+    public CommandSyntaxException createSyntaxException(String message, TagResolver... resolvers) {
+        Message msg = messageSerializer.serialize(minimsg(message, resolvers));
+        return new CommandSyntaxException(new SimpleCommandExceptionType(msg), msg);
     }
 }
