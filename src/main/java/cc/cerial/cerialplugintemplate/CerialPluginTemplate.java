@@ -3,7 +3,7 @@ package cc.cerial.cerialplugintemplate;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CerialPluginTemplate extends JavaPlugin {
-    private static final PluginUtils utils = new PluginUtils("");
+    private static PluginUtils utils;
     private static CerialPluginTemplate instance;
     private static PluginConfig config;
 
@@ -22,12 +22,11 @@ public final class CerialPluginTemplate extends JavaPlugin {
     }
 
     public boolean onReload() {
+        utils = new PluginUtils("");
         config = new PluginConfig();
         if (!config.loadConfig()) return false;
         return true;
     }
-
-
 
     @Override
     public void onEnable() {

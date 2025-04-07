@@ -16,6 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class should be used for any libraries you don't want to shade.<br>
+ * NOTE: This class is <b>STRICTLY</b> for loading libraries. If you need to do something before
+ * any worlds or plugins load, use the Bootstrap.
+ */
 @SuppressWarnings({"UnstableApiUsage", "unused"})
 public class CerialLibraryLoader implements PluginLoader {
     private static final Map<String, String> repos = new HashMap<>();

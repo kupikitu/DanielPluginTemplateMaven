@@ -1,7 +1,6 @@
 package cc.cerial.cerialplugintemplate.load;
 
 import cc.cerial.cerialplugintemplate.interfaces.PluginCommand;
-import cc.cerial.cerialplugintemplate.commands.debugutils.DebugUtilsRootCommand;
 import cc.cerial.cerialplugintemplate.interfaces.RootCommand;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.github.classgraph.ClassGraph;
@@ -18,15 +17,16 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * The bootstrap. By default, it is used for registering commands.
+ * The bootstrap. By default, it is used for registering commands. You may use it for (almost)
+ * anything you need to do before any plugins or worlds load.
  */
 @SuppressWarnings("UnstableApiUsage")
 public class CerialPluginBootstrap implements PluginBootstrap {
     @Override
     public void bootstrap(@NotNull BootstrapContext context) {
         context.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
-            registerSubcommands(context, commands, new DebugUtilsRootCommand().getCommand().createBuilder(),
-                    "cc.cerial.cerialplugintemplate.commands.debugutils");
+            // TODO: Add subcommands using registerSubcommands() method, or registerCommands() to register
+            // individual commands. 
         });
     }
 

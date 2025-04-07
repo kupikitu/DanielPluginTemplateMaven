@@ -8,8 +8,16 @@ import org.bukkit.command.CommandSender;
 
 import java.util.function.Predicate;
 
+/**
+ * A class which houses basic utility functions.
+ */
 public class PluginUtils {
     private final String prefix;
+
+    /**
+     * Constructs a new PluginUtils class.
+     * @param prefix The prefix for sending messages.
+     */
     public PluginUtils(String prefix) {
         this.prefix = prefix;
     }
