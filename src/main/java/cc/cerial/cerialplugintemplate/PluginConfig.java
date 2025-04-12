@@ -1,4 +1,4 @@
-package cc.cerial.cerialplugintemplate;
+package cc.daniel.danielplugintemplate;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
