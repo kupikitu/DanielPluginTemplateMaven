@@ -1,4 +1,4 @@
-package cc.cerial.cerialplugintemplate.customargs;
+package cc.daniel.danielplugintemplate.customargs;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
@@ -13,8 +13,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 
-import cc.cerial.cerialplugintemplate.CerialPluginTemplate;
-import cc.cerial.cerialplugintemplate.PluginUtils;
+import cc.daniel.Danielplugintemplate.danielPluginTemplate;
+import cc.daniel.danielplugintemplate.PluginUtils;
 import io.papermc.paper.command.brigadier.argument.CustomArgumentType;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
@@ -38,7 +38,7 @@ public class CachedOfflinePlayer implements CustomArgumentType<OfflinePlayer, St
 
     @Override
     public <S> OfflinePlayer parse(StringReader reader, S source) throws CommandSyntaxException {
-        PluginUtils utils = CerialPluginTemplate.getUtils();
+        PluginUtils utils = danielPluginTemplate.getUtils();
         String name = getNativeType().parse(reader);
         OfflinePlayer player = Bukkit.getOfflinePlayerIfCached(name);
         if (player == null)
