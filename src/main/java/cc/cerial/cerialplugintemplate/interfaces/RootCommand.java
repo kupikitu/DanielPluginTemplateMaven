@@ -1,4 +1,4 @@
-package cc.cerial.cerialplugintemplate.interfaces;
+package cc.daniel.danielplugintemplate.interfaces;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
