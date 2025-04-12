@@ -5,4 +5,4 @@
  * (for example: if you are making a command /something with subcommands one and two, you should create
  * a "something" package and then OneCommand and TwoCommand classes.)
  */
-package cc.cerial.cerialplugintemplate.commands;
+package cc.danie.danielplugintemplate.commands;
