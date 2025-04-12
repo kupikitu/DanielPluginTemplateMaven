@@ -1,9 +1,9 @@
 name: '${project.name}'
 version: '${project.version}'
 # TODO: Change the main, loader and bootstrapper classes accordingly when you refactor.
-main: cc.cerial.cerialplugintemplate.CerialPluginTemplate
-loader: cc.cerial.cerialplugintemplate.load.CerialLibraryLoader
-bootstrapper: cc.cerial.cerialplugintemplate.load.CerialPluginBootstrap
+main: cc.daniel.danielplugintemplate.DanielPluginTemplate
+loader: cc.daniel.danielplugintemplate.load.DanielLibraryLoader
+bootstrapper: cc.daniel.danielplugintemplate.load.DanielPluginBootstrap
 api-version: '1.21'
 authors:
   - Author name here
